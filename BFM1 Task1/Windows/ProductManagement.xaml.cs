@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Task1.Core;
 
 namespace Task1.UI.Windows
 {
@@ -19,9 +20,13 @@ namespace Task1.UI.Windows
     /// </summary>
     public partial class ProductManagement : Window
     {
+        public Inventory inventory { get; set; }
         public ProductManagement()
         {
             InitializeComponent();
+            
         }
+        void PartSearch_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e) => PartsRoster.ItemsSource = inventory.Parts.Where(em => em.Name.ToLower().Contains(TxtProductSearch.Text.ToLower()));
+
     }
 }

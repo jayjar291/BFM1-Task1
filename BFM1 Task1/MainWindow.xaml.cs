@@ -86,7 +86,8 @@ namespace Task1.UI
 
         private void btnProductAdd_Click(object sender, RoutedEventArgs e)
         {
-
+            ProductManagement productManagement = new ProductManagement();
+            productManagement.Show();
         }
 
         private void btnProductModify_Click(object sender, RoutedEventArgs e)
