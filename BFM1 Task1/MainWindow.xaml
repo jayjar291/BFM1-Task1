@@ -1,0 +1,57 @@
+﻿<Window x:Class="Task1.UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:Task1.UI.Controls"
+        mc:Ignorable="d"
+        Title="Inventory Management System" Height="300
+        " Width="800" SizeToContent="WidthAndHeight" HorizontalAlignment="Left" VerticalAlignment="Top">
+    <Window.Resources>
+        <DataTemplate x:Key="Item">
+            <Controls:ItemControl/>
+        </DataTemplate>
+        <ContextMenu x:Key="ProductMenu">
+            <MenuItem Header="Modify Product" Click="btnProductModify_Click"/>
+            <MenuItem Header="Delete Product" Click="btnProductDelete_Click"/>
+        </ContextMenu>
+        <Style x:Key="ProductStyle" TargetType="{x:Type ListViewItem}">
+            <Setter Property="ContextMenu" Value="{StaticResource ProductMenu}"/>
+        </Style>
+        <ContextMenu x:Key="PartMenu">
+            <MenuItem Header="Modify Part" Click="btnPartModify_Click"/>
+            <MenuItem Header="Delete Part" Click="btnPartDelete_Click"/>
+        </ContextMenu>
+        <Style x:Key="PartStyle" TargetType="{x:Type ListViewItem}">
+            <Setter Property="ContextMenu" Value="{StaticResource PartMenu}"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Parts:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="26" Width="38"/>
+        <ListView x:Name="PartsRoster" BorderBrush="Gainsboro" BorderThickness="1" 
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding Path=Parts}" 
+                  ItemTemplate="{StaticResource Item}" ItemContainerStyle="{StaticResource PartStyle}"
+                  ScrollViewer.CanContentScroll="True" Margin="10,41,10,35"
+                  HorizontalContentAlignment="Stretch"/>
+        <Label Content="Products:" HorizontalAlignment="Left" Margin="7,10,0,0" VerticalAlignment="Top" Grid.Column="1" Height="26" Width="59"/>
+        <ListView x:Name="ProductsRoster" BorderBrush="Gainsboro" BorderThickness="1" 
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding Path=Products}"
+            ItemTemplate="{StaticResource Item}" ItemContainerStyle="{StaticResource ProductStyle}"
+            ScrollViewer.CanContentScroll="True" Margin="10,41,10,35" Grid.Column="1"/>
+        <Label Content="Search:" Margin="0,10,135,0" VerticalAlignment="Top" Height="26" HorizontalAlignment="Right" Width="48"/>
+        <TextBox x:Name="PartSearch" Margin="0,14,10,0" TextWrapping="Wrap" Height="18" VerticalAlignment="Top" TextChanged="PartSearch_TextChanged" HorizontalAlignment="Right" Width="120"/>
+        <Label Content="Search:" Margin="0,10,135,0" VerticalAlignment="Top" Grid.Column="1" Height="26" HorizontalAlignment="Right" Width="48"/>
+        <TextBox x:Name="ProductSearch" Margin="0,14,10,0" TextWrapping="Wrap" Height="18" VerticalAlignment="Top" TextChanged="ProductSearch_TextChanged" Grid.Column="1" HorizontalAlignment="Right" Width="120"/>
+        <Button x:Name="btnPartDelete" Content="Delete" Margin="0,0,10,10" Click="btnPartDelete_Click" HorizontalAlignment="Right" Width="45" Height="20" VerticalAlignment="Bottom"/>
+        <Button x:Name="btnPartModify" Content="Modify" Margin="0,0,60,10" Click="btnPartModify_Click" HorizontalAlignment="Right" Width="45" Height="20" VerticalAlignment="Bottom"/>
+        <Button x:Name="btnPartAdd" Content="Add" Margin="0,0,110,10" VerticalAlignment="Bottom" Height="20" Click="btnPartAdd_Click" HorizontalAlignment="Right" Width="45"/>
+        <Button x:Name="btnProductDelete" Content="Delete" Margin="0,0,10,10" Click="btnProductDelete_Click" Grid.Column="1" HorizontalAlignment="Right" Width="45" Height="20" VerticalAlignment="Bottom"/>
+        <Button x:Name="btnProductModify" Content="Modify" Margin="0,0,60,10" Click="btnProductModify_Click" Grid.Column="1" HorizontalAlignment="Right" Width="45" Height="20" VerticalAlignment="Bottom"/>
+        <Button x:Name="btnProductAdd" Content="Add" Margin="0,0,110,10" Click="btnProductAdd_Click" Grid.Column="1" HorizontalAlignment="Right" Width="45" Height="20" VerticalAlignment="Bottom"/>
+    </Grid>
+
+</Window>

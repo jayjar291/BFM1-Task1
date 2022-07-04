@@ -1,0 +1,33 @@
+﻿<Window x:Class="Task1.UI.Windows.ProductManagement"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Task1.UI.Windows"
+        mc:Ignorable="d"
+        Title="ProductManagement" Height="293" Width="606">
+    <Grid>
+        <Label x:Name="txtName" Content="Add Product" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0"/>
+        <Label Content="ID:" HorizontalAlignment="Left" Margin="89,36,0,0" VerticalAlignment="Top"/>
+        <Label Content="Name:" HorizontalAlignment="Left" Margin="69,67,0,0" VerticalAlignment="Top"/>
+        <Label Content="Inventory:" HorizontalAlignment="Left" Margin="50,98,0,0" VerticalAlignment="Top"/>
+        <Label Content="Price/Cost:" HorizontalAlignment="Left" Margin="46,129,0,0" VerticalAlignment="Top"/>
+        <Label Content="Min:" HorizontalAlignment="Left" Margin="80,160,0,0" VerticalAlignment="Top"/>
+        <Label Content="Max:" HorizontalAlignment="Left" Margin="161,160,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="118,40,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False" Text = "{Binding PartID}"/>
+        <TextBox HorizontalAlignment="Left" Margin="118,71,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text = "{Binding Name}"/>
+        <TextBox x:Name="txtStock" HorizontalAlignment="Left" Margin="118,102,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text = "{Binding InStock}"/>
+        <TextBox HorizontalAlignment="Left" Margin="118,133,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text = "{Binding Price}"/>
+        <TextBox x:Name="txtMin" HorizontalAlignment="Left" Margin="118,164,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="35"  Text = "{Binding Min}"/>
+        <TextBox x:Name="txtMax" HorizontalAlignment="Left" Margin="203,164,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="35"  Text = "{Binding Max}"/>
+        <Button Content="Save" HorizontalAlignment="Left" Margin="153,218,0,0" VerticalAlignment="Top" Width="40" Click="Button_Click_1"/>
+        <Button Content="Cancle" HorizontalAlignment="Left" Margin="198,218,10,10" VerticalAlignment="Top" Width="40" Click="Button_Click"/>
+        <Label Content="Parts:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="26" Width="38"/>
+        <ListView x:Name="PartsRoster" BorderBrush="Gainsboro" BorderThickness="1" 
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding Path=Parts}" 
+                  ItemTemplate="{StaticResource Item}" ItemContainerStyle="{StaticResource PartStyle}"
+                  ScrollViewer.CanContentScroll="True" Margin="10,41,10,35"
+                  HorizontalContentAlignment="Stretch"/>
+        
+    </Grid>
+</Window>
