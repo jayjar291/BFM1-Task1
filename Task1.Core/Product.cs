@@ -38,6 +38,7 @@ namespace Task1.Core
             InStock = stock;
             Min = min;
             Max = max;
+            AssociatedParts = new BindingList<Part>();
         }
 
         /// <summary>

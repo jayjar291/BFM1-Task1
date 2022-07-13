@@ -89,7 +89,8 @@ namespace Task1.UI
 
         private void btnProductAdd_Click(object sender, RoutedEventArgs e)
         {
-            ProductManagement productManagement = new ProductManagement();
+            Product tempProduct = new Product("",0.0M,0,0,0);
+            ProductManagement productManagement = new ProductManagement(Inventory, tempProduct);
             productManagement.Show();
         }
 
@@ -98,8 +99,7 @@ namespace Task1.UI
             Product target = (Product)ProductsRoster.SelectedItem;
             if (target != null)
             {
-                ProductManagement modifyProduct = new ProductManagement(false);
-                modifyProduct.DataContext = target;
+                ProductManagement modifyProduct = new ProductManagement(Inventory,target,false);
                 modifyProduct.Show();
             }
         }

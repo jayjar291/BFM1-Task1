@@ -29,23 +29,23 @@
         <Label Content="Price/Cost:" HorizontalAlignment="Left" Margin="46,129,0,0" VerticalAlignment="Top" Height="26" Width="67"/>
         <Label Content="Min:" HorizontalAlignment="Left" Margin="80,160,0,0" VerticalAlignment="Top" Height="26" Width="33"/>
         <Label Content="Max:" HorizontalAlignment="Left" Margin="161,160,0,0" VerticalAlignment="Top" Height="26" Width="35"/>
-        <TextBox HorizontalAlignment="Left" Margin="118,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False" Text = "{Binding PartID}" Height="18"/>
-        <TextBox HorizontalAlignment="Left" Margin="118,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text = "{Binding Name}" Height="18"/>
-        <TextBox x:Name="txtStock" HorizontalAlignment="Left" Margin="118,102,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text = "{Binding InStock}" Height="18"/>
-        <TextBox HorizontalAlignment="Left" Margin="118,133,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text = "{Binding Price}" Height="18"/>
-        <TextBox x:Name="txtMin" HorizontalAlignment="Left" Margin="118,164,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="35"  Text = "{Binding Min}" Height="18"/>
-        <TextBox x:Name="txtMax" HorizontalAlignment="Left" Margin="203,164,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="35"  Text = "{Binding Max}" Height="18"/>
+        <TextBox HorizontalAlignment="Left" Margin="118,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False" Text = "{Binding Path=Product.ID}" Height="18"/>
+        <TextBox HorizontalAlignment="Left" Margin="118,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text = "{Binding Path=Product.Name}" Height="18"/>
+        <TextBox x:Name="txtStock" HorizontalAlignment="Left" Margin="118,102,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text = "{Binding Path=Product.InStock}" Height="18"/>
+        <TextBox HorizontalAlignment="Left" Margin="118,133,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text = "{Binding Path=Product.Price}" Height="18"/>
+        <TextBox x:Name="txtMin" HorizontalAlignment="Left" Margin="118,164,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="35"  Text = "{Binding Path=Product.Min}" Height="18"/>
+        <TextBox x:Name="txtMax" HorizontalAlignment="Left" Margin="203,164,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="35"  Text = "{Binding Path=Product.Max}" Height="18"/>
         <Button x:Name="btnSave" Content="Save" Margin="0,0,55,10" VerticalAlignment="Bottom" Height="20" Grid.Column="1" HorizontalAlignment="Right" Width="40" Click="btnSave_Click"/>
         <Button x:Name="btnCancle" Content="Cancle" Margin="0,0,10,10" Grid.Column="1" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="40" Click="btnCancle_Click"/>
         <Label Content="Available Parts:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="26" Grid.Column="1"/>
         <ListView x:Name="PartsRoster" BorderBrush="Gainsboro" BorderThickness="1" 
-                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding Path=Parts}" 
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding Path=Inventory.Parts}" 
                   ItemTemplate="{StaticResource Item}" ItemContainerStyle="{StaticResource PartStyle}"
                   ScrollViewer.CanContentScroll="True" Margin="10,41,10,0"
                   HorizontalContentAlignment="Left" Grid.Column="1" Height="85" VerticalAlignment="Top" />
         <Label Content="Selected Parts:" HorizontalAlignment="Left" Margin="10,131,0,0" VerticalAlignment="Top" Height="26" Grid.Column="1"/>
         <ListView x:Name="SelectedRoster" BorderBrush="Gainsboro" BorderThickness="1" 
-            ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding Parts}" 
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding Path=Product.AssociatedParts}" 
             ItemTemplate="{StaticResource Item}" ItemContainerStyle="{StaticResource PartStyle}"
             ScrollViewer.CanContentScroll="True" Margin="10,160,10,0"
             HorizontalContentAlignment="Left" Grid.Column="1" Height="80" VerticalAlignment="Top" />

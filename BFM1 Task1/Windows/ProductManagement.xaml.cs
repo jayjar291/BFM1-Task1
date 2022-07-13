@@ -20,38 +20,40 @@ namespace Task1.UI.Windows
     /// </summary>
     public partial class ProductManagement : Window
     {
-        public Inventory inventory { get; set; }
+        public Inventory Inventory { get; set; }
+        public Product Product { get; set; }
         public int State { get; set; }
-        public ProductManagement(bool type = true)
+        public ProductManagement(Inventory inventory, Product product ,bool type = true)
         {
             InitializeComponent();
+            Inventory = inventory;
+            Product = product;
             if (!type)
             {
                 this.Title = "Modify Part";
                 txtName.Content = this.Title;
             }
             State = -1;
+            DataContext = this;
 
         }
-        void PartSearch_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e) => PartsRoster.ItemsSource = inventory.Parts.Where(em => em.Name.ToLower().Contains(TxtProductSearch.Text.ToLower()));
+        void PartSearch_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e) => PartsRoster.ItemsSource = Inventory.Parts.Where(em => em.Name.ToLower().Contains(TxtProductSearch.Text.ToLower()));
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            Product tempProduct = (Product)DataContext;
             Part target = (Part)PartsRoster.SelectedItem;
             if (target != null)
             {
-                tempProduct.AssociatedParts.Add(target);
+                Product.AssociatedParts.Add(target);
             }
         }
 
         private void btnRemove_Click(object sender, RoutedEventArgs e)
         {
-            Product tempProduct = (Product)DataContext;
             Part target = (Part)SelectedRoster.SelectedItem;
             if (target != null)
             {
-                tempProduct.AssociatedParts.Remove(target);
+                Product.AssociatedParts.Remove(target);
             }
         }
 
