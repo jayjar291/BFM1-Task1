@@ -12,6 +12,19 @@ namespace Task1.Core
     /// </summary>
     public abstract class Part
     {
+        /// <summary>
+        /// Alias for mvvm bindings
+        /// </summary>
+        private int Id;
+
+        /// <summary>
+        /// Alias for mvvm bindings
+        /// </summary>
+        public int ID
+        {
+            get { return PartID; }
+            set { PartID = value; }
+        }
         public int PartID { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }

@@ -32,10 +32,13 @@ namespace Task1.UI
             Inhouse test2 = new Inhouse("lunar waneshaft", 36.55M, 25, 1, 25, 35);
             Inhouse test3 = new Inhouse("tremie pipe", 36.55M, 25, 1, 25, 35);
             Inhouse test4 = new Inhouse("grammeters", 36.55M, 25, 1, 25, 35);
+            Product test5 = new Product("Turbo Encabulator", 36.55M, 25, 1, 25);
+
             Inventory.addPart(test1);
             Inventory.addPart(test2);
             Inventory.addPart(test3);
             Inventory.addPart(test4);
+            Inventory.addProduct(test5);
             //refresh datacontext
             refresh();
         }
@@ -92,7 +95,13 @@ namespace Task1.UI
 
         private void btnProductModify_Click(object sender, RoutedEventArgs e)
         {
-
+            Product target = (Product)ProductsRoster.SelectedItem;
+            if (target != null)
+            {
+                ProductManagement modifyProduct = new ProductManagement(false);
+                modifyProduct.DataContext = target;
+                modifyProduct.Show();
+            }
         }
 
         private void btnProductDelete_Click(object sender, RoutedEventArgs e)

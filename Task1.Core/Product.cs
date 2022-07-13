@@ -9,6 +9,19 @@ namespace Task1.Core
 {
     public class Product
     {
+        /// <summary>
+        /// Alias for mvvm bindings
+        /// </summary>
+        private int Id;
+
+        /// <summary>
+        /// Alias for mvvm bindings
+        /// </summary>
+        public int ID
+        {
+            get { return ProductID; }
+            set { ProductID = value; }
+        }
         public BindingList<Part> AssociatedParts { get; set; }
         public int ProductID { get; set; }
         public string Name { get; set; }
@@ -16,9 +29,15 @@ namespace Task1.Core
         public int InStock { get; set; }
         public int Min { get; set; }
         public int Max { get; set; }
-        public Product()
+        public Product(string name, decimal price, int stock, int min, int max)
         {
-
+            Random tempRandom = new Random((int)DateTime.UtcNow.Ticks);
+            ProductID = tempRandom.Next(10000, 99999);
+            Name = name;
+            Price = price;
+            InStock = stock;
+            Min = min;
+            Max = max;
         }
 
         /// <summary>

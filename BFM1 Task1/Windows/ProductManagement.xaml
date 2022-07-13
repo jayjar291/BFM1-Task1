@@ -35,8 +35,8 @@
         <TextBox HorizontalAlignment="Left" Margin="118,133,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text = "{Binding Price}" Height="18"/>
         <TextBox x:Name="txtMin" HorizontalAlignment="Left" Margin="118,164,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="35"  Text = "{Binding Min}" Height="18"/>
         <TextBox x:Name="txtMax" HorizontalAlignment="Left" Margin="203,164,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="35"  Text = "{Binding Max}" Height="18"/>
-        <Button Content="Save" Margin="0,0,55,10" VerticalAlignment="Bottom" Height="20" Grid.Column="1" HorizontalAlignment="Right" Width="40"/>
-        <Button Content="Cancle" Margin="0,0,10,10" Grid.Column="1" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="40"/>
+        <Button x:Name="btnSave" Content="Save" Margin="0,0,55,10" VerticalAlignment="Bottom" Height="20" Grid.Column="1" HorizontalAlignment="Right" Width="40" Click="btnSave_Click"/>
+        <Button x:Name="btnCancle" Content="Cancle" Margin="0,0,10,10" Grid.Column="1" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="40" Click="btnCancle_Click"/>
         <Label Content="Available Parts:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="26" Grid.Column="1"/>
         <ListView x:Name="PartsRoster" BorderBrush="Gainsboro" BorderThickness="1" 
                   ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding Path=Parts}" 
@@ -44,13 +44,13 @@
                   ScrollViewer.CanContentScroll="True" Margin="10,41,10,0"
                   HorizontalContentAlignment="Left" Grid.Column="1" Height="85" VerticalAlignment="Top" />
         <Label Content="Selected Parts:" HorizontalAlignment="Left" Margin="10,131,0,0" VerticalAlignment="Top" Height="26" Grid.Column="1"/>
-        <ListView x:Name="PartsRoster_Copy" BorderBrush="Gainsboro" BorderThickness="1" 
+        <ListView x:Name="SelectedRoster" BorderBrush="Gainsboro" BorderThickness="1" 
             ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding Parts}" 
             ItemTemplate="{StaticResource Item}" ItemContainerStyle="{StaticResource PartStyle}"
             ScrollViewer.CanContentScroll="True" Margin="10,160,10,0"
             HorizontalContentAlignment="Left" Grid.Column="1" Height="80" VerticalAlignment="Top" />
-        <Button Content="Add" Grid.Column="1" Margin="0,134,10,0" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right" Width="36"/>
-        <Button Content="Remove" Grid.Column="1" Margin="0,134,51,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="50" Height="20"/>
+        <Button x:Name="btnAdd" Content="Add" Grid.Column="1" Margin="0,134,10,0" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right" Width="36" Click="btnAdd_Click"/>
+        <Button x:Name="btnRemove" Content="Remove" Grid.Column="1" Margin="0,134,51,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="50" Height="20" Click="btnRemove_Click"/>
         <Label Content="Search:" Margin="0,10,135,0" VerticalAlignment="Top" Grid.Column="1" Height="26" HorizontalAlignment="Right" Width="48"/>
         <TextBox x:Name="TxtProductSearch" Margin="0,14,10,0" TextWrapping="Wrap" Height="18" VerticalAlignment="Top" TextChanged="PartSearch_TextChanged" Grid.Column="1" HorizontalAlignment="Right" Width="120"/>
     </Grid>
