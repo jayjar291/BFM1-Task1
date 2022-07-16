@@ -6,7 +6,7 @@
         xmlns:Controls="clr-namespace:Task1.UI.Controls"
         mc:Ignorable="d"
         Title="Inventory Management System" Height="300
-        " Width="800" SizeToContent="WidthAndHeight" HorizontalAlignment="Left" VerticalAlignment="Top">
+        " Width="1000" SizeToContent="WidthAndHeight" HorizontalAlignment="Left" VerticalAlignment="Top">
     <Window.Resources>
         <DataTemplate x:Key="Item">
             <Controls:ItemControl/>
@@ -35,13 +35,13 @@
         <ListView x:Name="PartsRoster" BorderBrush="Gainsboro" BorderThickness="1" 
                   ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding Path=Parts}" 
                   ItemTemplate="{StaticResource Item}" ItemContainerStyle="{StaticResource PartStyle}"
-                  ScrollViewer.CanContentScroll="True" Margin="10,41,10,35"
+                  ScrollViewer.CanContentScroll="True" Margin="10,62,10,35"
                   HorizontalContentAlignment="Stretch"/>
         <Label Content="Products:" HorizontalAlignment="Left" Margin="7,10,0,0" VerticalAlignment="Top" Grid.Column="1" Height="26" Width="59"/>
         <ListView x:Name="ProductsRoster" BorderBrush="Gainsboro" BorderThickness="1" 
             ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding Path=Products}"
             ItemTemplate="{StaticResource Item}" ItemContainerStyle="{StaticResource ProductStyle}"
-            ScrollViewer.CanContentScroll="True" Margin="10,41,10,35" Grid.Column="1" HorizontalContentAlignment="Stretch"/>
+            ScrollViewer.CanContentScroll="True" Margin="10,62,10,35" Grid.Column="1" HorizontalContentAlignment="Stretch"/>
         <Label Content="Search:" Margin="0,10,135,0" VerticalAlignment="Top" Height="26" HorizontalAlignment="Right" Width="48"/>
         <TextBox x:Name="PartSearch" Margin="0,14,10,0" TextWrapping="Wrap" Height="18" VerticalAlignment="Top" TextChanged="PartSearch_TextChanged" HorizontalAlignment="Right" Width="120"/>
         <Label Content="Search:" Margin="0,10,135,0" VerticalAlignment="Top" Grid.Column="1" Height="26" HorizontalAlignment="Right" Width="48"/>
@@ -52,6 +52,38 @@
         <Button x:Name="btnProductDelete" Content="Delete" Margin="0,0,10,10" Click="btnProductDelete_Click" Grid.Column="1" HorizontalAlignment="Right" Width="45" Height="20" VerticalAlignment="Bottom"/>
         <Button x:Name="btnProductModify" Content="Modify" Margin="0,0,60,10" Click="btnProductModify_Click" Grid.Column="1" HorizontalAlignment="Right" Width="45" Height="20" VerticalAlignment="Bottom"/>
         <Button x:Name="btnProductAdd" Content="Add" Margin="0,0,110,10" Click="btnProductAdd_Click" Grid.Column="1" HorizontalAlignment="Right" Width="45" Height="20" VerticalAlignment="Bottom"/>
+        <Grid Margin="10,32,10,0" Height="30" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label VerticalAlignment="Center" HorizontalAlignment="Stretch" MinWidth="55" Content = "ID" Margin="5,0,5,0"/>
+            <Label VerticalAlignment="Center" HorizontalAlignment="Stretch" MinWidth="55" Content = "Name" Margin="5,0,5,0" Grid.Column="1"/>
+            <Label VerticalAlignment="Center" HorizontalAlignment="Stretch" MinWidth="55" Content = "Stock" Margin="5,0,5,0" Grid.Column="2"/>
+            <Label VerticalAlignment="Center" HorizontalAlignment="Stretch" MinWidth="55" Content = "Price" Margin="5,0,5,0" Grid.Column="3"/>
+            <Label VerticalAlignment="Center" HorizontalAlignment="Stretch" MinWidth="55" Content = "Min" Margin="5,0,5,0" Grid.Column="4"/>
+            <Label VerticalAlignment="Center" HorizontalAlignment="Stretch" MinWidth="55" Content = "Max" Margin="5,0,5,0" Grid.Column="5"/>
+        </Grid>
+        <Grid Margin="10,32,10,0" Height="30" VerticalAlignment="Top" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label VerticalAlignment="Center" HorizontalAlignment="Stretch" MinWidth="55" Content = "ID" Margin="5,0,5,0"/>
+            <Label VerticalAlignment="Center" HorizontalAlignment="Stretch" MinWidth="55" Content = "Name" Margin="5,0,5,0" Grid.Column="1"/>
+            <Label VerticalAlignment="Center" HorizontalAlignment="Stretch" MinWidth="55" Content = "Stock" Margin="5,0,5,0" Grid.Column="2"/>
+            <Label VerticalAlignment="Center" HorizontalAlignment="Stretch" MinWidth="55" Content = "Price" Margin="5,0,5,0" Grid.Column="3"/>
+            <Label VerticalAlignment="Center" HorizontalAlignment="Stretch" MinWidth="55" Content = "Min" Margin="5,0,5,0" Grid.Column="4"/>
+            <Label VerticalAlignment="Center" HorizontalAlignment="Stretch" MinWidth="55" Content = "Max" Margin="5,0,5,0" Grid.Column="5"/>
+        </Grid>
     </Grid>
 
 </Window>

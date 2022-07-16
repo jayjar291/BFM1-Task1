@@ -22,6 +22,7 @@ namespace Task1.UI.Windows
     {
         public int State { get; set; }
         public Part part { get; set; }
+        
         public PartManagement(bool type = true)
         {
             InitializeComponent();
@@ -47,8 +48,9 @@ namespace Task1.UI.Windows
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btnCancle_Click(object sender, RoutedEventArgs e)
         {
+            
             Close();
         }
 
@@ -67,7 +69,7 @@ namespace Task1.UI.Windows
             }
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             //data checks
             try

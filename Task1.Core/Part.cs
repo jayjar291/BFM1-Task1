@@ -31,10 +31,17 @@ namespace Task1.Core
         public int InStock { get; set; }
         public int Min { get; set; }
         public int Max { get; set; }
-        public Part(string name, decimal price, int stock, int min, int max)
+        public Part(string name, decimal price, int stock, int min, int max,int id =-1)
         {
-            Random tempRandom = new Random((int)DateTime.UtcNow.Ticks);
-            PartID = tempRandom.Next(10000, 99999);
+            if (id == -1)
+            {
+                Random tempRandom = new Random((int)DateTime.UtcNow.Ticks);
+                PartID = tempRandom.Next(10000, 99999);
+            }
+            else
+            {
+                PartID = id;
+            }
             Name = name;
             Price = price;
             InStock = stock;

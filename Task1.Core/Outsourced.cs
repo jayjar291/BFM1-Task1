@@ -23,7 +23,7 @@ namespace Task1.Core
             get { return CompanyName; }
             set { CompanyName = value; }
         }
-        public Outsourced(string name, decimal price, int stock, int min, int max, string companyName) : base(name, price, stock, min, max)
+        public Outsourced(string name, decimal price, int stock, int min, int max, string companyName,int id= -1) : base(name, price, stock, min, max,id)
         {
             CompanyName = companyName;
         }

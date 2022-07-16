@@ -18,7 +18,7 @@ namespace Task1.Core
         }
 
 
-        public Inhouse(string name, decimal price, int stock, int min, int max, int machineID) : base(name,price,stock,min,max)
+        public Inhouse(string name, decimal price, int stock, int min, int max, int machineID,int id=-1) : base(name,price,stock,min,max,id)
         {
             MachineID = machineID;
         }

@@ -55,7 +55,7 @@ namespace Task1.UI
         private void btnPartAdd_Click(object sender, RoutedEventArgs e)
         {
             PartManagement addPart = new PartManagement();
-            addPart.Show();
+            addPart.ShowDialog();
         }
 
         private void btnPartModify_Click(object sender, RoutedEventArgs e)
@@ -63,9 +63,30 @@ namespace Task1.UI
             Part target = (Part)PartsRoster.SelectedItem;
             if (target != null)
             {
+               
+                Part backup = target;
+                switch (target)
+                {
+                    case Inhouse:
+                        backup = new Inhouse(target.Name, target.Price, target.InStock, target.Min, target.Max, ((Inhouse)target).Special, target.PartID);
+                        break;
+                    case Outsourced:
+                        backup = new Outsourced(target.Name, target.Price, target.InStock, target.Min, target.Max, ((Outsourced)target).Special, target.PartID);
+                        break;
+                    default:
+                        break;
+                }
                 PartManagement modifyPart = new PartManagement(false);
                 modifyPart.DataContext = target;
-                modifyPart.Show();
+                modifyPart.ShowDialog();
+                if (modifyPart.State == -1)
+                {
+                    target = backup;
+                }
+            }
+            else
+            {
+                MessageBox.Show($"Please select a Part.", "Select Part", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
         private void btnPartDelete_Click(object sender, RoutedEventArgs e)
@@ -85,12 +106,16 @@ namespace Task1.UI
                         break;
                 }
             }
+            else
+            {
+                MessageBox.Show($"Please select a Part.", "Select Part", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
         private void btnProductAdd_Click(object sender, RoutedEventArgs e)
         {
             ProductManagement productManagement = new ProductManagement(Inventory);
-            productManagement.Show();
+            productManagement.ShowDialog();
             Product tempProduct = productManagement.Product;
             Inventory.Products.Add(tempProduct);
         }
@@ -101,7 +126,11 @@ namespace Task1.UI
             if (target != null)
             {
                 ProductManagement modifyProduct = new ProductManagement(Inventory,target,false);
-                modifyProduct.Show();
+                modifyProduct.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show($"Please select a Product.", "Select Product", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
@@ -121,6 +150,10 @@ namespace Task1.UI
                     default:
                         break;
                 }
+            }
+            else
+            {
+                MessageBox.Show($"Please select a Product.", "Select Product", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
