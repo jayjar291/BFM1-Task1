@@ -89,9 +89,10 @@ namespace Task1.UI
 
         private void btnProductAdd_Click(object sender, RoutedEventArgs e)
         {
-            Product tempProduct = new Product("",0.0M,0,0,0);
-            ProductManagement productManagement = new ProductManagement(Inventory, tempProduct);
+            ProductManagement productManagement = new ProductManagement(Inventory);
             productManagement.Show();
+            Product tempProduct = productManagement.Product;
+            Inventory.Products.Add(tempProduct);
         }
 
         private void btnProductModify_Click(object sender, RoutedEventArgs e)

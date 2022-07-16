@@ -23,15 +23,22 @@ namespace Task1.UI.Windows
         public Inventory Inventory { get; set; }
         public Product Product { get; set; }
         public int State { get; set; }
-        public ProductManagement(Inventory inventory, Product product ,bool type = true)
+        public ProductManagement(Inventory inventory, Product product = null, bool type = true)
         {
             InitializeComponent();
             Inventory = inventory;
             Product = product;
             if (!type)
             {
-                this.Title = "Modify Part";
+                this.Title = "Modify Product";
                 txtName.Content = this.Title;
+            }
+            else
+            {
+                if (Product == null)
+                {
+                    Product = new Product("", 0.0M, 0, 0, 0);
+                }
             }
             State = -1;
             DataContext = this;
@@ -59,7 +66,8 @@ namespace Task1.UI.Windows
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-
+            State = 1;
+            Close();
         }
 
         private void btnCancle_Click(object sender, RoutedEventArgs e)

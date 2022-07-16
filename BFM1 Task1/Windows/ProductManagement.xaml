@@ -42,7 +42,7 @@
                   ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding Path=Inventory.Parts}" 
                   ItemTemplate="{StaticResource Item}" ItemContainerStyle="{StaticResource PartStyle}"
                   ScrollViewer.CanContentScroll="True" Margin="10,41,10,0"
-                  HorizontalContentAlignment="Left" Grid.Column="1" Height="85" VerticalAlignment="Top" />
+                  HorizontalContentAlignment="Stretch" Grid.Column="1" Height="85" VerticalAlignment="Top" />
         <Label Content="Selected Parts:" HorizontalAlignment="Left" Margin="10,131,0,0" VerticalAlignment="Top" Height="26" Grid.Column="1"/>
         <ListView x:Name="SelectedRoster" BorderBrush="Gainsboro" BorderThickness="1" 
             ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding Path=Product.AssociatedParts}" 
