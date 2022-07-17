@@ -29,16 +29,27 @@ namespace Task1.Core
         public int InStock { get; set; }
         public int Min { get; set; }
         public int Max { get; set; }
-        public Product(string name, decimal price, int stock, int min, int max)
+        public Product(string name, decimal price, int stock, int min, int max, int id =-1, BindingList<Part> Parts = null)
         {
-            Random tempRandom = new Random((int)DateTime.UtcNow.Ticks);
-            ProductID = tempRandom.Next(10000, 99999);
+            if (id == -1)
+            {
+                Random tempRandom = new Random((int)DateTime.UtcNow.Ticks);
+                ProductID = tempRandom.Next(10000, 99999);
+            }
             Name = name;
             Price = price;
             InStock = stock;
             Min = min;
             Max = max;
-            AssociatedParts = new BindingList<Part>();
+            if (Parts == null)
+            {
+                AssociatedParts = new BindingList<Part>();
+            }
+            else
+            {
+                AssociatedParts = Parts;
+            }
+            
         }
 
         /// <summary>

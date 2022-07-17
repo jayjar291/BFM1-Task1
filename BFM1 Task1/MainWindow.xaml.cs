@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -64,7 +65,7 @@ namespace Task1.UI
             if (target != null)
             {
                
-                Part backup = target;
+                Part backup = null;
                 switch (target)
                 {
                     case Inhouse:
@@ -81,7 +82,8 @@ namespace Task1.UI
                 modifyPart.ShowDialog();
                 if (modifyPart.State == -1)
                 {
-                    target = backup;
+                    Inventory.Parts.Remove(target);
+                    Inventory.Parts.Add(backup);
                 }
             }
             else
@@ -125,8 +127,31 @@ namespace Task1.UI
             Product target = (Product)ProductsRoster.SelectedItem;
             if (target != null)
             {
+                BindingList<Part> backupParts = new BindingList<Part>();
+                foreach (Part part in target.AssociatedParts)
+                {
+                    Part tempPart = null;
+                    switch (part)
+                    {
+                        case Inhouse:
+                            tempPart = new Inhouse(part.Name, part.Price, part.InStock, part.Min, part.Max, ((Inhouse)part).Special, part.PartID);
+                            break;
+                        case Outsourced:
+                            tempPart = new Outsourced(part.Name, part.Price, part.InStock, part.Min, part.Max, ((Outsourced)part).Special, part.PartID);
+                            break;
+                        default:
+                            break;
+                    }
+                    backupParts.Add(tempPart);
+                }
+                Product backup = new Product(target.Name, target.Price, target.InStock, target.Min, target.Max, target.ID, backupParts);
                 ProductManagement modifyProduct = new ProductManagement(Inventory,target,false);
                 modifyProduct.ShowDialog();
+                if (modifyProduct.State == -1)
+                {
+                    Inventory.Products.Remove(target);
+                    Inventory.Products.Add(backup);
+                }
             }
             else
             {
