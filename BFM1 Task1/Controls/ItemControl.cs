@@ -17,6 +17,9 @@ namespace Task1.UI.Controls
 {
     public class ItemControl : Control
     {
+        /// <summary>
+        /// Item Control for MVVM
+        /// </summary>
         static ItemControl()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(ItemControl), new FrameworkPropertyMetadata(typeof(ItemControl)));

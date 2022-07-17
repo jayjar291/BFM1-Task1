@@ -39,6 +39,7 @@ namespace Task1.Core
             }
             Products.Add(product);
         }
+
         /// <summary>
         /// removes a product with the matching ID
         /// returns 'True' if successful  
@@ -83,6 +84,7 @@ namespace Task1.Core
             }
             Parts.Add(part);
         }
+
         /// <summary>
         /// removes a part from the list of parts
         /// returns 'True' if successful  

@@ -31,15 +31,27 @@ namespace Task1.Core
         public int InStock { get; set; }
         public int Min { get; set; }
         public int Max { get; set; }
+        /// <summary>
+        /// The constructor for the part class
+        /// </summary>
+        /// <param name="name">The name of the Part</param>
+        /// <param name="price">The price of the part</param>
+        /// <param name="stock">The number in stock</param>
+        /// <param name="min">The minumum stock</param>
+        /// <param name="max">The maximum stock</param>
+        /// <param name="id">ID (Only used for object Cloning)</param>
         public Part(string name, decimal price, int stock, int min, int max,int id =-1)
         {
+            //check if we need to copy the id
             if (id == -1)
             {
+                //if the id = -1 generate a new one
                 Random tempRandom = new Random((int)DateTime.UtcNow.Ticks);
                 PartID = tempRandom.Next(10000, 99999);
             }
             else
             {
+                //copy the id
                 PartID = id;
             }
             Name = name;
