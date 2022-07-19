@@ -22,7 +22,7 @@
             <ColumnDefinition Width="250"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Label x:Name="txtName" Content="Add Product" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Height="26" Width="77"/>
+        <Label x:Name="txtName" Content="Add Product" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Height="26"/>
         <Label Content="ID:" HorizontalAlignment="Left" Margin="89,36,0,0" VerticalAlignment="Top" Height="26" Width="24"/>
         <Label Content="Name:" HorizontalAlignment="Left" Margin="69,67,0,0" VerticalAlignment="Top" Height="26" Width="44"/>
         <Label Content="Inventory:" HorizontalAlignment="Left" Margin="50,98,0,0" VerticalAlignment="Top" Height="26" Width="62"/>

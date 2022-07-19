@@ -21,8 +21,11 @@ namespace Task1.UI.Windows
     public partial class PartManagement : Window
     {
         public int State { get; set; }
-        public Part part { get; set; }
-        
+        public Part Part { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="type"></param>
         public PartManagement(bool type = true)
         {
             InitializeComponent();
@@ -35,7 +38,11 @@ namespace Task1.UI.Windows
             }
             State = -1;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void rdoOutsourced_IsEnabledChanged(object sender, RoutedEventArgs e)
         {
             if (rdoOutsourced.IsChecked.Value)
@@ -50,10 +57,14 @@ namespace Task1.UI.Windows
 
         private void btnCancle_Click(object sender, RoutedEventArgs e)
         {
-            
+            State = -1;
             Close();
         }
-
+        /// <summary>
+        /// event 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             switch (DataContext)
@@ -71,30 +82,8 @@ namespace Task1.UI.Windows
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            //data checks
-            try
-            {
-                if (int.Parse(txtMax.Text) < int.Parse(txtMin.Text))
-                {
-                    throw new Exception("Max inventory must be must be greater than Min inventory");
-                }
-                if (int.Parse(txtMax.Text) !> 0)
-                {
-                    throw new Exception("Max inventory must be greater than 0");
-                }
-                if (int.Parse(txtMin.Text) !> 0)
-                {
-                    throw new Exception("Min inventory must be greater than 0");
-                }
-                if (int.Parse(txtStock.Text) !> int.Parse(txtMin.Text) || int.Parse(txtStock.Text) !< int.Parse(txtMax.Text))
-                {
-                    throw new Exception("Inventory must be a value between Min and Max inventory");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Data Input error\n{ex.Message}", "Input Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            State = 1;
+            Close();
         }
     }
 }

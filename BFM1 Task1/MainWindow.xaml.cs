@@ -52,8 +52,13 @@ namespace Task1.UI
         /// <param name="e"></param>
         private void btnPartAdd_Click(object sender, RoutedEventArgs e)
         {
-            PartManagement addPart = new PartManagement();
-            addPart.ShowDialog();
+            PartManagement partManagement = new PartManagement();
+            partManagement.ShowDialog();
+            //check if the new part should be saved.
+            if (partManagement.State != -1)
+            {
+                Inventory.Parts.Add(partManagement.Part);
+            }
         }
         /// <summary>
         /// event handler for the modify part button
@@ -65,10 +70,11 @@ namespace Task1.UI
         /// <param name="e"></param>
         private void btnPartModify_Click(object sender, RoutedEventArgs e)
         {
+            //find the selected part
             Part target = (Part)PartsRoster.SelectedItem;
             if (target != null)
             {
-               
+               //create a backup of the part
                 Part backup = null;
                 switch (target)
                 {
@@ -81,16 +87,19 @@ namespace Task1.UI
                     default:
                         break;
                 }
+                //create the PartManagement in the modify mode
                 PartManagement modifyPart = new PartManagement(false);
+                //set the dataContext to the target part
                 modifyPart.DataContext = target;
                 modifyPart.ShowDialog();
+                //check if we need to restore the backup part
                 if (modifyPart.State == -1)
                 {
                     Inventory.Parts.Remove(target);
                     Inventory.Parts.Add(backup);
                 }
             }
-            else
+            else // if no part is selected notify the user
             {
                 MessageBox.Show($"Please select a Part.", "Select Part", MessageBoxButton.OK, MessageBoxImage.Information);
             }
@@ -134,8 +143,11 @@ namespace Task1.UI
         {
             ProductManagement productManagement = new ProductManagement(Inventory);
             productManagement.ShowDialog();
-            Product tempProduct = productManagement.Product;
-            Inventory.Products.Add(tempProduct);
+            //check if the new product should be saved.
+            if (productManagement.State != -1)
+            {
+                Inventory.Products.Add(productManagement.Product);
+            }
         }
         /// <summary>
         /// event handler for the modify button
