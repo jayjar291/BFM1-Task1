@@ -48,8 +48,16 @@ namespace Task1.Core
         /// <returns></returns>
         public bool removeProduct(int ID)
         {
+            try
+            {
+                Products.Remove(Products.Where(em => em.ID == ID).FirstOrDefault());
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
             
-            return false;
         }
 
         /// <summary>
@@ -59,7 +67,7 @@ namespace Task1.Core
         /// <returns></returns>
         public Product lookupProduct(int ID)
         {
-            return null;
+            return Products.Where(em => em.ID == ID).FirstOrDefault();
         }
 
         /// <summary>
@@ -69,7 +77,8 @@ namespace Task1.Core
         /// <param name="product">updated object</param>
         public void updateProduct(int ID, Product product)
         {
-
+            Product Target = Products.Where(em => em.ID == ID).FirstOrDefault();
+            Target = product;
         }
 
         /// <summary>
@@ -93,8 +102,16 @@ namespace Task1.Core
         /// <returns></returns>
         public bool deletePart(Part part)
         {
-
-            return false;
+            try
+            {
+                Parts.Remove(part);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            
         }
 
         /// <summary>
@@ -102,9 +119,9 @@ namespace Task1.Core
         /// </summary>
         /// <param name="ID">interger ID of the object to locate</param>
         /// <returns></returns>
-        public Product lookupPart(int ID)
+        public Part lookupPart(int ID)
         {
-            return null;
+            return Parts.Where(em => em.ID == ID).FirstOrDefault() ;
         }
 
         /// <summary>
@@ -114,7 +131,8 @@ namespace Task1.Core
         /// <param name="part">updated object</param>
         public void updatePart(int ID, Part part)
         {
-
+            Part Target = Parts.Where(em => em.ID == ID).FirstOrDefault();
+            Target = part;
         }
 
     }

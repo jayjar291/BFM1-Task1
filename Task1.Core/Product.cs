@@ -96,16 +96,24 @@ namespace Task1.Core
         /// <returns></returns>
         bool removedAssociatedPart(int ID)
         {
-            return false;
+            try
+            {
+                AssociatedParts.Remove(AssociatedParts.Where(em => em.ID == ID).FirstOrDefault());
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
         
         /// <summary>
         /// locates a part with the matching ID
         /// </summary>
         /// <param name="ID">ID of the part to locate</param>
-        void lookupdAssociatedPart(int ID)
+        Part lookupdAssociatedPart(int ID)
         {
-
+            return AssociatedParts.Where(em => em.ID == ID).FirstOrDefault();
         }
     }
 }
