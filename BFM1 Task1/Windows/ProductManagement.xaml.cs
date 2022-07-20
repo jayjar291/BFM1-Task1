@@ -49,7 +49,17 @@ namespace Task1.UI.Windows
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void PartSearch_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e) => PartsRoster.ItemsSource = Inventory.Parts.Where(em => em.Name.ToLower().Contains(TxtProductSearch.Text.ToLower()));
+        void PartSearch_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            if (Inventory.Parts.Where(em => em.Name.ToLower().Contains(TxtProductSearch.Text.ToLower()) || em.ID.ToString().Contains(TxtProductSearch.Text.ToLower())).Count() >= 1)
+            {
+                PartsRoster.ItemsSource = Inventory.Parts.Where(em => em.Name.ToLower().Contains(TxtProductSearch.Text.ToLower()) || em.ID.ToString().Contains(TxtProductSearch.Text.ToLower()));
+            }
+            else
+            {
+                MessageBox.Show($"No matching parts were found.", "Search", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
         /// <summary>
         /// Event handler for the add part button
         /// adds the selected part to the list of Associated Parts

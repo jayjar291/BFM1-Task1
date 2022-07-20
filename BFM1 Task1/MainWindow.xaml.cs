@@ -227,14 +227,34 @@ namespace Task1.UI
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void PartSearch_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e) => PartsRoster.ItemsSource = Inventory.Parts.Where(em => em.Name.ToLower().Contains(PartSearch.Text.ToLower()));
+        void PartSearch_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            if (Inventory.Parts.Where(em => em.Name.ToLower().Contains(PartSearch.Text.ToLower()) || em.ID.ToString().Contains(PartSearch.Text.ToLower())).Count() >= 1)
+            {
+                PartsRoster.ItemsSource = Inventory.Parts.Where(em => em.Name.ToLower().Contains(PartSearch.Text.ToLower()) || em.ID.ToString().Contains(PartSearch.Text.ToLower()));
+            }
+            else
+            {
+                MessageBox.Show($"No matching parts were found.", "Search", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
         /// <summary>
         /// event handeler for the product search box
         /// sets the item source for the product ListBox to a filtered list that matches the search box string
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void ProductSearch_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e) => ProductsRoster.ItemsSource = Inventory.Products.Where(em => em.Name.ToLower().Contains(ProductSearch.Text.ToLower()));
+        void ProductSearch_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            if (Inventory.Products.Where(em => em.Name.ToLower().Contains(ProductSearch.Text.ToLower()) || em.ID.ToString().Contains(ProductSearch.Text.ToLower())).Count() >= 1)
+            {
+                ProductsRoster.ItemsSource = Inventory.Products.Where(em => em.Name.ToLower().Contains(ProductSearch.Text.ToLower()) || em.ID.ToString().Contains(ProductSearch.Text.ToLower()));
+            }
+            else
+            {
+                MessageBox.Show($"No matching products were found.", "Search", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
         /// <summary>
         /// event handler for the exit button
         /// </summary>
