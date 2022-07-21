@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Controls="clr-namespace:Task1.UI.Controls"
         mc:Ignorable="d"
-        Title="Inventory Management System" Height="400" Width="1000" SizeToContent="WidthAndHeight" HorizontalAlignment="Left" VerticalAlignment="Top">
+        Title="Inventory Management System" Height="300" Width="1000"  HorizontalAlignment="Left" VerticalAlignment="Top">
     <Window.Resources>
         <DataTemplate x:Key="Item">
             <Controls:ItemControl/>
@@ -62,8 +62,8 @@
             </Grid.ColumnDefinitions>
             <Label VerticalAlignment="Center" HorizontalAlignment="Stretch" MinWidth="55" Content = "ID" Margin="5,0,5,0"/>
             <Label VerticalAlignment="Center" HorizontalAlignment="Stretch" MinWidth="55" Content = "Name" Margin="5,0,5,0" Grid.Column="1"/>
-            <Label VerticalAlignment="Center" HorizontalAlignment="Stretch" MinWidth="55" Content = "Stock" Margin="5,0,5,0" Grid.Column="2"/>
-            <Label VerticalAlignment="Center" HorizontalAlignment="Stretch" MinWidth="55" Content = "Price" Margin="5,0,5,0" Grid.Column="3"/>
+            <Label VerticalAlignment="Center" HorizontalAlignment="Stretch" MinWidth="55" Content = "Price" Margin="5,0,5,0" Grid.Column="2"/>
+            <Label VerticalAlignment="Center" HorizontalAlignment="Stretch" MinWidth="55" Content = "Inventory" Margin="5,0,5,0" Grid.Column="3"/>
             <Label VerticalAlignment="Center" HorizontalAlignment="Stretch" MinWidth="55" Content = "Min" Margin="5,0,5,0" Grid.Column="4"/>
             <Label VerticalAlignment="Center" HorizontalAlignment="Stretch" MinWidth="55" Content = "Max" Margin="5,0,5,0" Grid.Column="5"/>
         </Grid>
@@ -78,8 +78,8 @@
             </Grid.ColumnDefinitions>
             <Label VerticalAlignment="Center" HorizontalAlignment="Stretch" MinWidth="55" Content = "ID" Margin="5,0,5,0"/>
             <Label VerticalAlignment="Center" HorizontalAlignment="Stretch" MinWidth="55" Content = "Name" Margin="5,0,5,0" Grid.Column="1"/>
-            <Label VerticalAlignment="Center" HorizontalAlignment="Stretch" MinWidth="55" Content = "Stock" Margin="5,0,5,0" Grid.Column="2"/>
-            <Label VerticalAlignment="Center" HorizontalAlignment="Stretch" MinWidth="55" Content = "Price" Margin="5,0,5,0" Grid.Column="3"/>
+            <Label VerticalAlignment="Center" HorizontalAlignment="Stretch" MinWidth="55" Content = "Price" Margin="5,0,5,0" Grid.Column="2"/>
+            <Label VerticalAlignment="Center" HorizontalAlignment="Stretch" MinWidth="55" Content = "Inventory" Margin="5,0,5,0" Grid.Column="3"/>
             <Label VerticalAlignment="Center" HorizontalAlignment="Stretch" MinWidth="55" Content = "Min" Margin="5,0,5,0" Grid.Column="4"/>
             <Label VerticalAlignment="Center" HorizontalAlignment="Stretch" MinWidth="55" Content = "Max" Margin="5,0,5,0" Grid.Column="5"/>
         </Grid>

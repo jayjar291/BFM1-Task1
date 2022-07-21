@@ -90,13 +90,18 @@ namespace Task1.UI
                 //create the PartManagement in the modify mode
                 PartManagement modifyPart = new PartManagement(false);
                 //set the dataContext to the target part
-                modifyPart.DataContext = target;
+                modifyPart.Part = target;
                 modifyPart.ShowDialog();
                 //check if we need to restore the backup part
                 if (modifyPart.State == -1)
                 {
                     Inventory.Parts.Remove(target);
                     Inventory.Parts.Add(backup);
+                }
+                else if (modifyPart.State == 1)
+                {
+                    Inventory.Parts.Remove(target);
+                    Inventory.Parts.Add(modifyPart.Part);
                 }
             }
             else // if no part is selected notify the user

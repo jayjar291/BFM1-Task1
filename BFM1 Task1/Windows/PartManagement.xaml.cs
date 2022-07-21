@@ -22,37 +22,74 @@ namespace Task1.UI.Windows
     {
         public int State { get; set; }
         public Part Part { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="type"></param>
+        bool Type;
+
+        private void refresh()
+        {
+            DataContext = null;
+            DataContext = Part;
+        }
+
         public PartManagement(bool type = true)
         {
             InitializeComponent();
+            Type = type;
             if (!type)
             {
                 this.Title = "Modify Part";
                 txtName.Content = this.Title;
-                rdoOutsourced.IsEnabled = false;
-                rdoInhouse.IsEnabled = false;
             }
             State = -1;
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+
         private void rdoOutsourced_IsEnabledChanged(object sender, RoutedEventArgs e)
         {
-            if (rdoOutsourced.IsChecked.Value)
+            if (Type)
             {
-                txtSpecial.Content = "Company Name:";
+                if (rdoOutsourced.IsChecked.Value)
+                {
+                    txtSpecial.Content = "Company Name:";
+                    Part = new Outsourced("", 0.0M, 1, 1, 2, "Company Name");
+                }
+                else
+                {
+                    txtSpecial.Content = "Machine ID";
+                    Part = new Inhouse("", 0.0M, 1, 1, 2, 000);
+                }
             }
             else
             {
-                txtSpecial.Content = "Machine ID";
+                if (rdoOutsourced.IsChecked.Value)
+                {
+                    txtSpecial.Content = "Company Name:";
+                    switch (Part)
+                    {
+                        case Inhouse:
+                            Part = new Outsourced(Part.Name, Part.Price, Part.InStock, Part.Min, Part.Max, "", Part.PartID);
+                            break;
+                        case Outsourced:
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                else
+                {
+                    txtSpecial.Content = "Machine ID";
+                    switch (Part)
+                    {
+                        case Inhouse:
+                            break;
+                        case Outsourced:
+                            Part = new Inhouse(Part.Name, Part.Price, Part.InStock, Part.Min, Part.Max, 0000, Part.PartID);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+
             }
+            refresh();
         }
 
         private void btnCancle_Click(object sender, RoutedEventArgs e)
@@ -60,14 +97,18 @@ namespace Task1.UI.Windows
             State = -1;
             Close();
         }
-        /// <summary>
-        /// event 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+
+            State = 1;
+            Close();
+        }
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            switch (DataContext)
+            refresh();
+            switch (Part)
             {
                 case Inhouse:
                     rdoInhouse.IsChecked = true;
@@ -78,12 +119,7 @@ namespace Task1.UI.Windows
                 default:
                     break;
             }
-        }
 
-        private void btnSave_Click(object sender, RoutedEventArgs e)
-        {
-            State = 1;
-            Close();
         }
     }
 }
