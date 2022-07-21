@@ -100,7 +100,10 @@ namespace Task1.UI.Windows
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-
+            if (Validation.GetHasError(txtMin))
+            {
+                Validation.GetErrors(txtMin);
+            }
             State = 1;
             Close();
         }

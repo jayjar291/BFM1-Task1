@@ -18,7 +18,7 @@
         <Label Content="Max:" HorizontalAlignment="Left" Margin="161,160,0,0" VerticalAlignment="Top"/>
         <Label x:Name="txtSpecial" Content="Special:" Margin="0,191,136,0" VerticalAlignment="Top" HorizontalAlignment="Right"/>
         <TextBox HorizontalAlignment="Left" Margin="118,40,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False" Text = "{Binding PartID}"/>
-        <TextBox HorizontalAlignment="Left" Margin="118,71,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text = "{Binding Name}"/>
+        <TextBox x:Name="txtPartName" HorizontalAlignment="Left" Margin="118,71,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text = "{Binding Name}"/>
         <TextBox x:Name="txtStock" HorizontalAlignment="Left" Margin="118,102,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text = "{Binding InStock}"/>
         <TextBox HorizontalAlignment="Left" Margin="118,133,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text = "{Binding Price}"/>
         <TextBox x:Name="txtMin" HorizontalAlignment="Left" Margin="118,164,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="35"  Text = "{Binding Min}"/>
