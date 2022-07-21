@@ -54,6 +54,7 @@ namespace Task1.Core
                 //copy the id
                 PartID = id;
             }
+            //Assign values
             Name = name;
             Price = price;
             InStock = stock;

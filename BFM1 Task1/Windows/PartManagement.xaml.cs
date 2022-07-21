@@ -1,16 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using Task1.Core;
 
 namespace Task1.UI.Windows
@@ -20,48 +10,77 @@ namespace Task1.UI.Windows
     /// </summary>
     public partial class PartManagement : Window
     {
+        /// <summary>
+        /// State stores the state of the window. used for saving and cancle functions.
+        /// </summary>
         public int State { get; set; }
+        /// <summary>
+        /// Part stores the target part for modifaction, creation.
+        /// </summary>
         public Part Part { get; set; }
+        /// <summary>
+        /// private bool keeps track of the type of window
+        /// </summary>
         bool Type;
-
+        /// <summary>
+        /// this refreshes the datacontext
+        /// </summary>
         private void refresh()
         {
             DataContext = null;
             DataContext = Part;
         }
-
+        /// <summary>
+        /// constructor for the PartManagment window
+        /// </summary>
+        /// <param name="type">type of window "True" for adding parts. "False" for modifying parts</param>
         public PartManagement(bool type = true)
         {
             InitializeComponent();
+            //set the window type
             Type = type;
             if (!type)
             {
                 this.Title = "Modify Part";
                 txtName.Content = this.Title;
             }
+            //set the window state
             State = -1;
         }
-
+        /// <summary>
+        /// event handler for the radio buttons
+        /// will create or modifiy the Part to match the selected type.
+        /// also sets the special feild text.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void rdoOutsourced_IsEnabledChanged(object sender, RoutedEventArgs e)
         {
+            //check window type
             if (Type)
             {
+                //Add Part
                 if (rdoOutsourced.IsChecked.Value)
                 {
+                    //set special feild text and create new part;
                     txtSpecial.Content = "Company Name:";
                     Part = new Outsourced("", 0.0M, 1, 1, 2, "Company Name");
                 }
                 else
                 {
+                    //set special feild text and create new part;
                     txtSpecial.Content = "Machine ID";
                     Part = new Inhouse("", 0.0M, 1, 1, 2, 000);
                 }
             }
             else
             {
+                //Modify part
                 if (rdoOutsourced.IsChecked.Value)
                 {
+                    //set special feild text
                     txtSpecial.Content = "Company Name:";
+                    //Clone part to new part type
                     switch (Part)
                     {
                         case Inhouse:
@@ -75,7 +94,9 @@ namespace Task1.UI.Windows
                 }
                 else
                 {
+                    //set special feild text
                     txtSpecial.Content = "Machine ID";
+                    //Clone part to new part type
                     switch (Part)
                     {
                         case Inhouse:
@@ -89,18 +110,30 @@ namespace Task1.UI.Windows
                 }
 
             }
+            //refresh the dataContext
             refresh();
         }
-
+        /// <summary>
+        /// event handeler for the cancle button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCancle_Click(object sender, RoutedEventArgs e)
         {
+            //set the state and exit
             State = -1;
             Close();
         }
-
+        /// <summary>
+        /// event handler for the save button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
+            //set state
             State = 1;
+            //data validation
             try
             {
                 //get WPF validation errors
@@ -147,15 +180,22 @@ namespace Task1.UI.Windows
                 State = -1;
                 MessageBox.Show($"{ex.Message}", "Input Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
+            //check that the state has not changed and close
             if (State == 1)
             {
                 Close();
             }
         }
-
+        /// <summary>
+        /// event handler for window load
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            //refresh the data context
             refresh();
+            //set the selected radio button
             switch (Part)
             {
                 case Inhouse:
