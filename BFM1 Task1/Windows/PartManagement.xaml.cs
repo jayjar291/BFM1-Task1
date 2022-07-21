@@ -100,12 +100,57 @@ namespace Task1.UI.Windows
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            if (Validation.GetHasError(txtMin))
-            {
-                Validation.GetErrors(txtMin);
-            }
             State = 1;
-            Close();
+            try
+            {
+                //get WPF validation errors
+                if (Validation.GetHasError(txtMin))
+                {
+                    throw new Exception("Minimum " + Validation.GetErrors(txtMin)[0].ErrorContent.ToString().Replace('.', ' ') + "to a number.");
+                }
+                if (Validation.GetHasError(txtMax))
+                {
+                    throw new Exception("Maximum " + Validation.GetErrors(txtMax)[0].ErrorContent.ToString().Replace('.',' ') + "to a number.");
+                }
+                if (Validation.GetHasError(txtPrice))
+                {
+                    throw new Exception("Price/Cost " + Validation.GetErrors(txtPrice)[0].ErrorContent.ToString().Replace('.', ' ') + "to a decimal.");
+                }
+                if (Validation.GetHasError(txtStock))
+                {
+                    throw new Exception("Inventory " + Validation.GetErrors(txtStock)[0].ErrorContent.ToString().Replace('.', ' ') + "to a number.");
+                }
+                if (Validation.GetHasError(txtSpecial1))
+                {
+                    throw new Exception(txtSpecial.Content + " " + Validation.GetErrors(txtSpecial1)[0].ErrorContent.ToString().Replace('.', ' ') + "to a number.");
+                };
+                if (int.Parse(txtMin.Text) < 1)
+                {
+                    throw new Exception("Minimum must be grater than 0");
+                }
+                if (int.Parse(txtMax.Text) < int.Parse(txtMin.Text))
+                {
+                    throw new Exception("Maximum must be grater than Minmum");
+                }
+                if (int.Parse(txtPrice.Text) < 0)
+                {
+                    throw new Exception("Price/Cost must be grater than 0");
+                }
+                if (int.Parse(txtStock.Text) >= int.Parse(txtMin.Text) && int.Parse(txtStock.Text) <= int.Parse(txtMax.Text)) { }
+                else
+                {
+                    throw new Exception("Inventory must be between Minimum and Maximum");
+                }              
+            }
+            catch (Exception ex)
+            {
+                State = -1;
+                MessageBox.Show($"{ex.Message}", "Input Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            if (State == 1)
+            {
+                Close();
+            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

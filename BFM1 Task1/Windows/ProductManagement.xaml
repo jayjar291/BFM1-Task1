@@ -30,9 +30,9 @@
         <Label Content="Min:" HorizontalAlignment="Left" Margin="80,160,0,0" VerticalAlignment="Top" Height="26" Width="33"/>
         <Label Content="Max:" HorizontalAlignment="Left" Margin="161,160,0,0" VerticalAlignment="Top" Height="26" Width="35"/>
         <TextBox HorizontalAlignment="Left" Margin="118,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False" Text = "{Binding Path=Product.ID}" Height="18"/>
-        <TextBox HorizontalAlignment="Left" Margin="118,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text = "{Binding Path=Product.Name}" Height="18"/>
+        <TextBox x:Name="txtProductName" HorizontalAlignment="Left" Margin="118,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text = "{Binding Path=Product.Name}" Height="18"/>
         <TextBox x:Name="txtStock" HorizontalAlignment="Left" Margin="118,102,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text = "{Binding Path=Product.InStock}" Height="18"/>
-        <TextBox HorizontalAlignment="Left" Margin="118,133,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text = "{Binding Path=Product.Price}" Height="18"/>
+        <TextBox x:Name="txtPrice" HorizontalAlignment="Left" Margin="118,133,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text = "{Binding Path=Product.Price}" Height="18"/>
         <TextBox x:Name="txtMin" HorizontalAlignment="Left" Margin="118,164,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="35"  Text = "{Binding Path=Product.Min}" Height="18"/>
         <TextBox x:Name="txtMax" HorizontalAlignment="Left" Margin="203,164,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="35"  Text = "{Binding Path=Product.Max}" Height="18"/>
         <Button x:Name="btnSave" Content="Save" Margin="0,0,55,10" VerticalAlignment="Bottom" Height="20" Grid.Column="1" HorizontalAlignment="Right" Width="40" Click="btnSave_Click"/>
