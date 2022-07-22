@@ -1,4 +1,11 @@
-﻿using System.Collections.Generic;
+﻿/*
+ * Dev Jared Stapley
+ * student ID 002401013
+ * Class Software I – C# - C968
+ */
+
+
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;

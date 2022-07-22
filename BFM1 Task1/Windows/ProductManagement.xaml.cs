@@ -1,4 +1,11 @@
-﻿using System;
+﻿/*
+ * Dev Jared Stapley
+ * student ID 002401013
+ * Class Software I – C# - C968
+ */
+
+
+using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
