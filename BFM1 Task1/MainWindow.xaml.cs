@@ -18,19 +18,7 @@ namespace Task1.UI
             //Startup
             InitializeComponent();
             DataContext = Inventory;
-            //test data
-            Inhouse test1 = new Inhouse("hydrocoptic marzelvanes", 36.55M, 25, 1, 25, 35);
-            Inhouse test2 = new Inhouse("lunar waneshaft", 36.55M, 25, 1, 25, 35);
-            Inhouse test3 = new Inhouse("tremie pipe", 36.55M, 25, 1, 25, 35);
-            Inhouse test4 = new Inhouse("grammeters", 36.55M, 25, 1, 25, 35);
-            Product test5 = new Product("Turbo Encabulator", 36.55M, 25, 1, 25);
-            //add test data
-            Inventory.addPart(test1);
-            Inventory.addPart(test2);
-            Inventory.addPart(test3);
-            Inventory.addPart(test4);
-            Inventory.addProduct(test5);
-
+      
             //refresh datacontext
             refresh();
         }
@@ -117,9 +105,11 @@ namespace Task1.UI
         /// <param name="e"></param>
         private void btnPartDelete_Click(object sender, RoutedEventArgs e)
         {
+            //get target part
             Part target = (Part)PartsRoster.SelectedItem;
             if (target != null)
             {
+                //confirm with the user
                 MessageBoxResult result = MessageBox.Show($"Are you sure you want to delete {target.Name} part?.", "Delete Part", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                 switch (result)
                 {
@@ -132,6 +122,7 @@ namespace Task1.UI
                         break;
                 }
             }
+            //no part selected
             else
             {
                 MessageBox.Show($"Please select a Part.", "Select Part", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -146,6 +137,7 @@ namespace Task1.UI
         /// <param name="e"></param>
         private void btnProductAdd_Click(object sender, RoutedEventArgs e)
         {
+            //create productManagement window
             ProductManagement productManagement = new ProductManagement(Inventory);
             productManagement.ShowDialog();
             //check if the new product should be saved.
@@ -164,12 +156,16 @@ namespace Task1.UI
         /// <param name="e"></param>
         private void btnProductModify_Click(object sender, RoutedEventArgs e)
         {
+            //get target part
             Product target = (Product)ProductsRoster.SelectedItem;
             if (target != null)
             {
+                //create backup part
                 BindingList<Part> backupParts = new BindingList<Part>();
+                //backup Associated Parts
                 foreach (Part part in target.AssociatedParts)
                 {
+                    //create backup of each part
                     Part tempPart = null;
                     switch (part)
                     {
@@ -184,15 +180,19 @@ namespace Task1.UI
                     }
                     backupParts.Add(tempPart);
                 }
+                //create product backup with the list of backup parts
                 Product backup = new Product(target.Name, target.Price, target.InStock, target.Min, target.Max, target.ID, backupParts);
+                //create the modifyProduct window
                 ProductManagement modifyProduct = new ProductManagement(Inventory,target,false);
                 modifyProduct.ShowDialog();
+                //check if we need to load the backup
                 if (modifyProduct.State == -1)
                 {
                     Inventory.Products.Remove(target);
                     Inventory.Products.Add(backup);
                 }
             }
+            //no product selected
             else
             {
                 MessageBox.Show($"Please select a Product.", "Select Product", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -206,14 +206,25 @@ namespace Task1.UI
         /// <param name="e"></param>
         private void btnProductDelete_Click(object sender, RoutedEventArgs e)
         {
+            //get target product
             Product target = (Product)ProductsRoster.SelectedItem;
             if (target != null)
             {
+                //confirm with user
                 MessageBoxResult result = MessageBox.Show($"Are you sure you want to delete {target.Name} Product?.", "Delete Product", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                 switch (result)
                 {
                     case MessageBoxResult.Yes:
-                        Inventory.Products.Remove(target);
+                        if (target.AssociatedParts.Count > 0)
+                        {
+                            //inform the user that we cant remove a product that has parts
+                            MessageBox.Show($"Unable to delete {target.Name}.\nThis Product can’t be deleted because a part is assigned to it.", "Delete Product", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                            break;
+                        }
+                        else
+                        {
+                            Inventory.Products.Remove(target);
+                        }
                         break;
                     case MessageBoxResult.No:
                         break;
@@ -221,6 +232,7 @@ namespace Task1.UI
                         break;
                 }
             }
+            //no product selected
             else
             {
                 MessageBox.Show($"Please select a Product.", "Select Product", MessageBoxButton.OK, MessageBoxImage.Information);

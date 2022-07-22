@@ -157,6 +157,7 @@ namespace Task1.UI.Windows
                 {
                     throw new Exception(txtSpecial.Content + " " + Validation.GetErrors(txtSpecial1)[0].ErrorContent.ToString().Replace('.', ' ') + "to a number.");
                 };
+                //valadate inputs
                 if (int.Parse(txtMin.Text) < 1)
                 {
                     throw new Exception("Minimum must be grater than 0");
@@ -175,6 +176,7 @@ namespace Task1.UI.Windows
                     throw new Exception("Inventory must be between Minimum and Maximum");
                 }              
             }
+            //reset state and display input error message
             catch (Exception ex)
             {
                 State = -1;
