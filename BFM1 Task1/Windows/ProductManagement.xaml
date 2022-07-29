@@ -36,7 +36,7 @@
         <TextBox x:Name="txtMin" HorizontalAlignment="Left" Margin="118,164,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="35"  Text = "{Binding Path=Product.Min}" Height="18"/>
         <TextBox x:Name="txtMax" HorizontalAlignment="Left" Margin="203,164,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="35"  Text = "{Binding Path=Product.Max}" Height="18"/>
         <Button x:Name="btnSave" Content="Save" Margin="0,0,55,10" VerticalAlignment="Bottom" Height="20" Grid.Column="1" HorizontalAlignment="Right" Width="40" Click="btnSave_Click"/>
-        <Button x:Name="btnCancle" Content="Cancle" Margin="0,0,10,10" Grid.Column="1" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="40" Click="btnCancle_Click"/>
+        <Button x:Name="btnCancle" Content="Cancel" Margin="0,0,10,10" Grid.Column="1" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="40" Click="btnCancle_Click"/>
         <Label Content="Available Parts:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="26" Grid.Column="1"/>
         <ListView x:Name="PartsRoster" BorderBrush="Gainsboro" BorderThickness="1" 
                   ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding Path=Inventory.Parts}" 

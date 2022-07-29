@@ -43,7 +43,7 @@ namespace Task1.UI.Windows
                 //create a new product
                 if (Product == null)
                 {
-                    Product = new Product("", 0.0M, 0, 0, 0);
+                    Product = new Product("", 0.0M, 0, 1, 2);
                 }
             }
             State = -1;
@@ -80,6 +80,10 @@ namespace Task1.UI.Windows
             {
                 Product.AssociatedParts.Add(target);
             }
+            else
+            {
+                MessageBox.Show($"Please select a Part to add.", "Select Part", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
         /// <summary>
         /// event handler for the remove part button
@@ -92,7 +96,22 @@ namespace Task1.UI.Windows
             Part target = (Part)SelectedRoster.SelectedItem;
             if (target != null)
             {
-                Product.AssociatedParts.Remove(target);
+                MessageBoxResult result = MessageBox.Show($"Are you sure you want to delete {target.Name} Part?.", "Delete Part", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                switch (result)
+                {
+                    case MessageBoxResult.Yes:
+                        Product.AssociatedParts.Remove(target);
+                        break;
+                    case MessageBoxResult.No:
+                        break;
+                    default:
+                        break;
+                }
+                
+            }
+            else
+            {
+                MessageBox.Show($"Please select a Part to remove.", "Select Part", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
         /// <summary>
@@ -133,7 +152,7 @@ namespace Task1.UI.Windows
                 {
                     throw new Exception("Maximum must be grater than Minmum");
                 }
-                if (int.Parse(txtPrice.Text) < 0)
+                if (double.Parse(txtPrice.Text) < 0)
                 {
                     throw new Exception("Price/Cost must be grater than 0");
                 }

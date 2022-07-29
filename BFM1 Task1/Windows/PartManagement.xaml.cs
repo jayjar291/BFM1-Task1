@@ -71,13 +71,13 @@ namespace Task1.UI.Windows
                 {
                     //set special feild text and create new part;
                     txtSpecial.Content = "Company Name:";
-                    Part = new Outsourced("", 0.0M, 1, 1, 2, "Company Name");
+                    Part = new Outsourced("", 0.0M, 0, 1, 2, "Company Name");
                 }
                 else
                 {
                     //set special feild text and create new part;
                     txtSpecial.Content = "Machine ID";
-                    Part = new Inhouse("", 0.0M, 1, 1, 2, 000);
+                    Part = new Inhouse("", 0.0M, 0, 1, 2, 0);
                 }
             }
             else
@@ -173,7 +173,7 @@ namespace Task1.UI.Windows
                 {
                     throw new Exception("Maximum must be grater than Minmum");
                 }
-                if (int.Parse(txtPrice.Text) < 0)
+                if (double.Parse(txtPrice.Text) < 0)
                 {
                     throw new Exception("Price/Cost must be grater than 0");
                 }

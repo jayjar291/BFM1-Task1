@@ -218,25 +218,24 @@ namespace Task1.UI
             if (target != null)
             {
                 //confirm with user
-                MessageBoxResult result = MessageBox.Show($"Are you sure you want to delete {target.Name} Product?.", "Delete Product", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-                switch (result)
+                if (target.AssociatedParts.Count > 0)
                 {
-                    case MessageBoxResult.Yes:
-                        if (target.AssociatedParts.Count > 0)
-                        {
-                            //inform the user that we cant remove a product that has parts
-                            MessageBox.Show($"Unable to delete {target.Name}.\nThis Product can’t be deleted because a part is assigned to it.", "Delete Product", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                            break;
-                        }
-                        else
-                        {
+                    //inform the user that we cant remove a product that has parts
+                    MessageBox.Show($"Unable to delete {target.Name}.\nThis Product can’t be deleted because a part is assigned to it.", "Delete Product", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                }
+                else
+                {
+                    MessageBoxResult result = MessageBox.Show($"Are you sure you want to delete {target.Name} Product?.", "Delete Product", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    switch (result)
+                    {
+                        case MessageBoxResult.Yes:
                             Inventory.Products.Remove(target);
-                        }
-                        break;
-                    case MessageBoxResult.No:
-                        break;
-                    default:
-                        break;
+                            break;
+                        case MessageBoxResult.No:
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
             //no product selected

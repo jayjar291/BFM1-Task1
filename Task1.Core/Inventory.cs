@@ -31,7 +31,14 @@ namespace Task1.Core
         // class constructor
         public Inventory()
         {
-            
+            if (Products == null)
+            {
+                Products = new ObservableCollection<Product>();
+            }
+            if (Parts == null)
+            {
+                Parts = new ObservableCollection<Part>();
+            }
         }
 
         /// <summary>

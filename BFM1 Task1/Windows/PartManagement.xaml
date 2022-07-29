@@ -25,6 +25,6 @@
         <TextBox x:Name="txtSpecial1" HorizontalAlignment="Left" Margin="118,195,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text = "{Binding Special}"/>
         <TextBox x:Name="txtMax" HorizontalAlignment="Left" Margin="203,164,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="35"  Text = "{Binding Max}"/>
         <Button Content="Save" HorizontalAlignment="Left" Margin="153,218,0,0" VerticalAlignment="Top" Width="40" Click="btnSave_Click"/>
-        <Button Content="Cancle" HorizontalAlignment="Left" Margin="198,218,10,10" VerticalAlignment="Top" Width="40" Click="btnCancle_Click"/>
+        <Button Content="Cancel" HorizontalAlignment="Left" Margin="198,218,10,10" VerticalAlignment="Top" Width="40" Click="btnCancle_Click"/>
     </Grid>
 </Window>
