@@ -35,6 +35,8 @@ namespace Task1.UI
         /// </summary>
         private void refresh()
         {
+            PartsRoster.ItemsSource = Inventory.Parts;
+            ProductsRoster.ItemsSource = Inventory.Products;
             DataContext = null;
             DataContext = Inventory;
         }
@@ -134,6 +136,7 @@ namespace Task1.UI
             {
                 MessageBox.Show($"Please select a Part.", "Select Part", MessageBoxButton.OK, MessageBoxImage.Information);
             }
+            refresh();
         }
         /// <summary>
         /// event handler for the add product button
